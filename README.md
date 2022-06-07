@@ -23,7 +23,7 @@
 
 ## Description
 
-A back end for a social media website made with pure mySQL. 
+A back end for a social media website made with pure MySQL. 
 
 
 ## Table of Contents 

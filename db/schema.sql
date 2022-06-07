@@ -1,0 +1,5 @@
+CREATE TABLE users (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    clan_connected BOOLEAN NOT NULL
+);
