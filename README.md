@@ -17,8 +17,6 @@
 <p align="center">
     <img src="https://img.shields.io/badge/-SQL-blue" />
     <img src="https://img.shields.io/badge/-mySQL-green" />
-    <img src="https://img.shields.io/badge/-GraphQL-yellow" />
-    <img src="https://img.shields.io/badge/-Vitawind-red" />
 </p>
 
 <!-- ![ScreenShot](./client/vegeta-gif3.gif "screenshot") -->
