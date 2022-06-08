@@ -15,15 +15,17 @@
 </p>
 
 <p align="center">
+    <img src="https://img.shields.io/badge/-Postman-orange" />
     <img src="https://img.shields.io/badge/-SQL-blue" />
     <img src="https://img.shields.io/badge/-mySQL-green" />
+    <img src="https://img.shields.io/badge/-Express-blue" />
 </p>
 
 <!-- ![ScreenShot](./client/vegeta-gif3.gif "screenshot") -->
 
 ## Description
 
-A back end for a social media website made with pure MySQL. 
+A social network API made with Postman and MySQL. 
 
 
 ## Table of Contents 
