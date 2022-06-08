@@ -1,3 +1,9 @@
+CREATE TABLE platforms (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    benefits TEXT
+);
+
 CREATE TABLE users (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL,
