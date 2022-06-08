@@ -19,6 +19,59 @@ const db = mysql.createConnection(
     console.log('Connected to the social database.')
 );
 
+//GET all platforms
+app.get('/api/platforms', (req, res) => {
+    const sql = `SELECT * FROM platforms`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: rows
+        });
+    });
+});
+
+//GET a single platform
+app.get('/api/platform/:id', (req, res) => {
+    const sql = `SELECT * FROM platforms WHERE id=?`;
+    const params = [req.params.id];
+    db.query(sql, params, (err, row) => {
+        if (err) {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: row
+        });
+    });
+});
+
+//Delete a platform
+app.delete('/api/platform/:id', (req, res) => {
+    sql = `DELETE FROM platforms WHERE id = ?`;
+    const params = [req.params.id];
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({ error: res.message });
+            // checks if anything was deleted
+        } else if (!result.affectedRows) {
+            res.json({
+                message: 'Platform not found'
+            });
+        } else {
+            res.json({
+                message: 'deleted',
+                changes: result.affectedRows,
+                id: req.params.id
+            });
+        }
+    });
+});
+
 // Get all users
 app.get('/api/users', (req, res) => {
     const sql = `SELECT users.*, platforms.name 
@@ -78,6 +131,36 @@ app.delete('/api/user/:id', (req, res) => {
                 message: 'deleted',
                 changes: result.affectedRows,
                 id: req.params.id
+            });
+        }
+    });
+});
+
+// Update a user's platform
+app.put('/api/user/:id', (req, res) => {
+
+    const errors = inputCheck(req.body, 'platform_id');
+    if (errors) {
+        res.status(400).json({ error: errors });
+        return;
+    }
+
+    const sql = `UPDATE users SET platform_id = ? 
+                 WHERE id = ?`;
+    const params = [req.body.platform_id, req.params.id];
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({ error: err.message });
+            // check if a record was found
+        } else if (!result.affectedRows) {
+            res.json({
+                message: 'user not found'
+            });
+        } else {
+            res.json({
+                message: 'success',
+                data: req.body,
+                changes: result.affectedRows
             });
         }
     });
