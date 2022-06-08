@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS platforms;
+DROP TABLE IF EXISTS followers;
 
 
 CREATE TABLE platforms (
@@ -14,4 +15,11 @@ CREATE TABLE users (
     platform_id INTEGER,
     clan_connected BOOLEAN NOT NULL,
     CONSTRAINT fk_platform FOREIGN KEY (platform_id) REFERENCES platforms(id) ON DELETE SET NULL
+);
+
+CREATE TABLE followers (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(30) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  subscribed_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
