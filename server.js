@@ -21,7 +21,11 @@ const db = mysql.createConnection(
 
 // Get all users
 app.get('/api/users', (req, res) => {
-    const sql = `SELECT * FROM users`;
+    const sql = `SELECT users.*, platforms.name 
+    AS platform_name
+    FROM users
+    LEFT JOIN platforms
+    ON users.platform_id = platforms.id`;
 
     db.query(sql, (err, rows) => {
         if (err) {
@@ -37,7 +41,12 @@ app.get('/api/users', (req, res) => {
 
 // Get a single user
 app.get('/api/user/:id', (req, res) => {
-    const sql = `SELECT * FROM users WHERE id = ?`;
+    const sql = `SELECT users.*, platforms.name 
+    AS platform_name
+    FROM users
+    LEFT JOIN platforms
+    ON users.platform_id = platforms.id
+    WHERE users.id = ?`;
     const params = [req.params.id];
 
     db.query(sql, params, (err, row) => {
